@@ -155,11 +155,10 @@ sample_predictions = np.array([np.argmax(x) for x in predictions]) + 1
 
 to_predict_ids = to_predict_ids.values.tolist()
 
-def create_kaggle_file(model, file_name):
+def create_kaggle_file(file_name):
     print('----- CREATING KAGGLE SUBMISSION FORMAT ----')
     results = pd.DataFrame(columns=['id', 'label'])
 
-    #sample_predictions = predict_classes(test_images)
     for i in range(len(to_predict_ids)):
         current_pred = {'id': to_predict_ids[i][0], 'label': sample_predictions[i]}
         results = results.append(current_pred, ignore_index=True)
@@ -168,4 +167,4 @@ def create_kaggle_file(model, file_name):
     results.to_csv(file_name + '.csv', encoding='utf-8', index=False)
 
 
-create_kaggle_file(model, 'ThirdSolution')
+create_kaggle_file('BestSolution')
